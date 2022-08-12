@@ -1,3 +1,13 @@
+# Code adapted from: https://github.com/immersive-limit/coco-manager
+# Original code under MIT Licence
+# Adapted by: Dejana Mandic @dmandic17
+# Changes made: 
+#   - Code reformated
+#   - Arguments requirements minor changes (to account for categories containing space character)
+#   - Progress tracking added
+#   - Testing added in coco_extraction_test.py
+#   - Exception handling added for unknown paths
+
 import json
 from pathlib import Path
 import argparse
@@ -154,8 +164,12 @@ class CocoExtractor():
 
         # Write the JSON to a file
         print('Saving new annotation file...')
-        with open(self.output_ann_path, 'w+') as output_file:
-            json.dump(new_ann, output_file)
+        try:
+            with open(self.output_ann_path, 'w+') as output_file:
+                json.dump(new_ann, output_file)
+        except EnvironmentError:
+            print("ERROR: Couldn't write to the output file, please check your permissions and the path correctness.")
+            quit()
 
         print('Filtered json saved.')
 
