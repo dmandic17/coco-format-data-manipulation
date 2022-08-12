@@ -49,7 +49,7 @@ class CocoExtractor():
             self.segmentations[image_id].append(segmentation)
 
     # Filter by categories
-    def filter_categories(self):
+    def filtering_categories(self):
         """ Find category ids matching args
             Create mapping from original category id to new category id
             Create new collection of categories
@@ -75,7 +75,7 @@ class CocoExtractor():
             new_category['id'] = new_id
             self.new_categories.append(new_category)
 
-    def filter_annotations(self):
+    def filtering_annotations(self):
         """ Create new collection of annotations matching category ids
             Keep track of image ids matching annotations
         """
@@ -90,7 +90,7 @@ class CocoExtractor():
                     self.new_segmentations.append(new_segmentation)
                     self.new_image_ids.add(image_id)
 
-    def filter_images(self):
+    def filtering_images(self):
         """ Create new collection of images
         """
         self.new_images = []
@@ -101,31 +101,49 @@ class CocoExtractor():
     def extract_categories(self,args):
 
         # Load the arguments
+        print('Reading arguments...')
+
         self.input_ann_path = Path(args.input_ann)
+        print("Input path:", self.input_ann_path)
+
         self.output_ann_path = Path(args.output_ann)
+        print("Output path:", self.output_ann_path)
+
         self.filter_categories = args.categories
+        print("Categories for filtering:", self.filter_categories)
 
         # Load the annotation file if it exists
+        print('Opening input annotations file...')
         try:
             with open(self.input_ann_path) as json_file:
                 self.coco = json.load(json_file)
         except EnvironmentError:
             print("ERROR: Couldn't read input annotation file.")
             quit()
+
+        # Reading info and licences:
+        print('Reading info and licenses...')
+        self.info = self.coco['info']
+        self.licenses = self.coco['licenses']
         
         # Process the annnotations
-        print('Processing input annotations...')
+        print('Reading categories...')
         self.read_categories()
+        print('Reading images...')
         self.read_images()
+        print('Reading segmentations...')
         self.read_segmentations()
 
         # Filter to specific categories
-        print('Filtering...')
-        self.filter_categories()
-        self.filter_annotations()
-        self.filter_images()
+        print('Filtering categories...')
+        self.filtering_categories()
+        print('Filtering annotations...')
+        self.filtering_annotations()
+        print('Filtering images...')
+        self.filtering_images()
 
-        # Build new annotation 
+        # Build new annotation
+        print('Making new annotations file...')
         new_ann = {
             'info': self.info,
             'licenses': self.licenses,
