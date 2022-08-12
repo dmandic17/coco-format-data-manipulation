@@ -1,3 +1,6 @@
+# Other files that are not important:
+cluster_run.sh
+
 # VS code
 .vscode/
 
