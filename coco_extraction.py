@@ -5,8 +5,8 @@
 #   - Code reformated
 #   - Arguments requirements minor changes (to account for categories containing space character)
 #   - Progress tracking added
-#   - Testing added in coco_extraction_test.py
-#   - Class listing can also be found int coco_extraction_test.py
+#   - Testing added in coco_categories.py
+#   - Class listing can also be found int coco_categories.py
 #   - Exception handling added for unknown paths
 
 import json
@@ -176,7 +176,7 @@ class CocoExtractor():
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Extract categories from COCO JSON annotation. ")
+    parser = argparse.ArgumentParser(description="Extract subset of categories from COCO JSON annotation. ")
     parser.add_argument("-i", "--input_ann", dest="input_ann",
         help="path to a json annotation file in coco format")
     parser.add_argument("-o", "--output_ann", dest="output_ann",

@@ -68,7 +68,7 @@ class CocoExtractorTest():
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Extract categories from COCO JSON annotation. ")
+    parser = argparse.ArgumentParser(description="List all categories from COCO JSON annotation, or compare them to a given list of categories. ")
     parser.add_argument("-i", "--ann", dest="ann",
         help="Path to a json annotation file in coco format")
     parser.add_argument("-c", "--categories", nargs='+', dest="categories",
