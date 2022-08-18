@@ -6,6 +6,7 @@
 #   - Arguments requirements minor changes (to account for categories containing space character)
 #   - Progress tracking added
 #   - Testing added in coco_extraction_test.py
+#   - Class listing can also be found int coco_extraction_test.py
 #   - Exception handling added for unknown paths
 
 import json
