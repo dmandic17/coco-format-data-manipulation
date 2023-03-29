@@ -1,4 +1,4 @@
-# Coco format category extraction for object detection
+# Coco format data manipulation
 
 ### Functionality:
 - The script ```coco_extraction.py``` allows you to create new annotation file in Coco format from an existing one using the chosen subset of categories.
