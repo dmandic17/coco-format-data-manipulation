@@ -25,7 +25,10 @@ class CocoExtractor():
 
         for category in self.coco['categories']:
             cat_id = category['id']
-            super_category = category['supercategory']
+            try:
+                super_category = category['supercategory']
+            except KeyError:
+                super_category = 'all'
             
             # Add category to categories dict
             if cat_id not in self.categories:
@@ -176,6 +179,7 @@ class CocoExtractor():
 
 
 if __name__ == "__main__":
+    print('Parsing the arguments...')
     parser = argparse.ArgumentParser(description="Extract subset of categories from COCO JSON annotation. ")
     parser.add_argument("-i", "--input_ann", dest="input_ann",
         help="path to a json annotation file in coco format")

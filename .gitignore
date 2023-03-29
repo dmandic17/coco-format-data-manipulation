@@ -1,6 +1,6 @@
 # Other files that are not important:
 cluster_run.sh
-
+slurm/
 # VS code
 .vscode/
 
