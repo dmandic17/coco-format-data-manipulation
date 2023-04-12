@@ -66,7 +66,7 @@ if __name__ == '__main__':
     argParser = argparse.ArgumentParser()
     required = argParser.add_argument_group('required arguments')
     required.add_argument('-i', '--in_path', help='Path to input annotation file in label studio json format.', required=True)
-    argParser.add_argument('-o', '--out_path', action='store_true', help='Path to output annotation file - coco format output.')
+    required.add_argument('-o', '--out_path', action='store_true', help='Path to output annotation file - coco format output.', required=True)
 
     args = argParser.parse_args()
     main(args)
